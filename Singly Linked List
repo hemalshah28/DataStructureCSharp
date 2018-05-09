@@ -1,0 +1,99 @@
+using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+// creating node 
+public class Node
+{
+    public Node Next;
+    public object Value;
+}
+
+//Creating linked list class to create ndoe.
+public class LinkedList
+{
+    private Node head;
+    private Node current;
+    public int count;
+    
+    public LinkedList()
+    {
+        head = new Node();
+        current = head;
+    }
+   
+    public void AddAtLast(object Data )
+    {
+        Node Newnode = new Node();
+        Newnode.Value = Data;
+        current.Next= Newnode;
+        current = Newnode;   
+        count++;
+            
+    }
+    
+    public void AddAtStart(object Data)
+    {
+        Node Newnode = new Node();
+        Newnode.Value = Data;
+        Newnode.Next = head.Next;
+        head.Next = Newnode;
+        
+    }
+    
+    public void RemoveFromStart()
+    {
+        if (head.Next != null)
+        {
+            Node DeleteNode =  head.Next;
+            head.Next = DeleteNode.Next;
+            DeleteNode.Next = null;
+        }
+        else
+        {
+            Console.Write("oops Singly List is empty.");
+        }
+    
+    }
+    
+    public void PrintAllNodes()
+    {
+    
+        Node curr = head;
+        Console.Write("Head");
+        Console.Write("->");
+        while (curr.Next != null)
+        {
+            curr = curr.Next;
+            Console.Write(curr.Value);
+            Console.Write("->");
+            
+        }
+        Console.Write("Null");
+    }
+}
+
+
+public class Example
+{
+   public static void Main()
+   {
+       LinkedList lnklist = new LinkedList();
+        lnklist.PrintAllNodes();
+        Console.WriteLine();
+        
+       lnklist.AddAtLast(12);
+       lnklist.AddAtStart("Hemal");
+       lnklist.PrintAllNodes();
+        Console.WriteLine();
+       lnklist.RemoveFromStart();
+       lnklist.RemoveFromStart();
+       lnklist.PrintAllNodes();
+       Console.WriteLine();
+       lnklist.RemoveFromStart();
+       lnklist.PrintAllNodes();
+       Console.WriteLine();
+      
+      
+   }  
+}
